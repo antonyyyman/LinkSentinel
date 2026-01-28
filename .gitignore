@@ -1,0 +1,27 @@
+# --- General ---
+.DS_Store
+.env*
+
+# --- Frontend (Next.js) ---
+# This matches node_modules anywhere in the project
+node_modules/
+# This matches .next folders anywhere in the project
+.next/
+out/
+build/
+# Next.js dev locks
+.next/dev/lock
+
+# --- Backend (Python/FastAPI) ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+# Virtual environments
+venv/
+env/
+.venv/
+
+# --- IDE ---
+.vscode/
+.idea/
