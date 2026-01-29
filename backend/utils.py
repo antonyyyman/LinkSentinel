@@ -5,7 +5,7 @@ import tldextract
 # SCORING WEIGHTS
 WEIGHT_IP_ADDRESS = 80 # IP Addresses uncommon in URLs
 WEIGHT_SHORT_URL = 20 # Again not inhenrently dangerous, but all URL shorteners should be treated with care
-WEIGHT_NO_HTTPS = 40 # Not inhenrenly dangerous just insecure connection
+WEIGHT_NO_HTTPS = 35 # Not inhenrenly dangerous just insecure connection
 WEIGHT_SUBDOMAINS = 30 # Large number of subdomains usually uncommon
 WEIGHT_DOMAIN_SPOOF = 100 # Domain spoof indicates intent to deceive
 WEIGHT_LONG_URL = 10 # Long URLs can be an indicator of malicious link but not always
