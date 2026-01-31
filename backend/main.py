@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any, Optional, List
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
 from utils import perform_url_analysis, THRESHOLD_PHISHING
@@ -27,6 +27,7 @@ class URLCheckResult(BaseModel):
     is_phishing: bool
     danger_score: float
     reason: list[str]
+    whois_data: Optional[dict[str, Any]] = None
 
 @app.post("/analyse", response_model=URLCheckResult)
 async def analyse_url(url_input: UrlInput):
@@ -49,14 +50,15 @@ async def analyse_url(url_input: UrlInput):
     if not url_input.url.strip():
         raise HTTPException(status_code=400, detail="URL cannot be empty")
 
-    final_score, reasons = perform_url_analysis(url)
+    final_score, reasons, whois_res = perform_url_analysis(url)
     is_phishing = final_score >= THRESHOLD_PHISHING
 
     return {
         "url": url,
         "is_phishing": is_phishing,
-        "danger_score": final_score, 
-        "reason": reasons
+        "danger_score": final_score,
+        "reason": reasons,
+        "whois_data": whois_res
     }
     
 
