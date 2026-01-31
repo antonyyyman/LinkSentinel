@@ -67,6 +67,7 @@ Key signals include:
   Overly long URLs may be used to conceal malicious parameters or evade visual inspection.
 
 ### Weighting model
+> *Weights are empirical and subject to tuning as more samples are collected.*
 
 ```
 WEIGHT_IP_ADDRESS = 80 # IP Addresses uncommon in URLs
@@ -77,8 +78,6 @@ WEIGHT_DOMAIN_SPOOF = 100 # Domain spoof indicates intent to deceive
 WEIGHT_LONG_URL = 10 # Long URLs can be an indicator of malicious link but not always
 THRESHOLD_PHISHING = 70
 ```
-
-> *Weights are empirical and subject to tuning as more samples are collected.*
 
 ## Conclusion
 
