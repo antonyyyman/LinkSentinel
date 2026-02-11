@@ -8,7 +8,7 @@ export default function Navbar() {
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
     return (
         <nav className="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out bg-slate-950/20 backdrop-blur-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-14 sm:h-16 md:h-20">
                     <div className="flex items-center gap-2 group cursor-pointer">
                         <div>
@@ -37,17 +37,21 @@ export default function Navbar() {
                                     Features
                                 </a>
                             </li>
-                            <li>
+                            {/* <li>
                                 <a href="#" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     Pricing
                                 </a>
-                            </li>
+                            </li> */}
                             <li>
                                 <a href="#" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     Contact
                                 </a>
                             </li>
                         </ul>
+                    </div>
+                    <div className="hidden md:flex items-center gap-4 justify-items-end">
+                        <span><button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300">Sign In</button></span>
+                        <span><button className="px-4 py-2 bg-white hover:bg-blue-50 text-blue-600 font-semibold rounded-lg transition-colors duration-300">Sign Up</button></span>
                     </div>
                     <button className="md:hidden p-2 text-white hover:text-blue-500 transition-colors duration-300" onClick={() => setMobileMenuIsOpen((prev) => !prev)}>
                         {mobileMenuIsOpen ? (
@@ -76,11 +80,11 @@ export default function Navbar() {
                                 Features
                             </a>
                         </li>
-                        <li>
+                        {/* <li>
                             <a href="#" onClick={() => setMobileMenuIsOpen(false)} className="text-white hover:text-blue-500 transition-colors duration-300">
                                 Pricing
                             </a>
-                        </li>
+                        </li> */}
                         <li>
                             <a href="#" onClick={() => setMobileMenuIsOpen(false)} className="text-white hover:text-blue-500 transition-colors duration-300">
                                 Contact

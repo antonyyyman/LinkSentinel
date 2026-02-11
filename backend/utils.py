@@ -4,6 +4,8 @@ import tldextract
 import whois
 from datetime import datetime, timezone
 import asyncio
+import requests
+from urllib.parse import quote
 
 # SCORING WEIGHTS
 WEIGHT_IP_ADDRESS = 80 # IP Addresses uncommon in URLs
@@ -13,6 +15,7 @@ WEIGHT_SUBDOMAINS = 30 # Large number of subdomains usually uncommon
 WEIGHT_DOMAIN_SPOOF = 100 # Domain spoof indicates intent to deceive
 WEIGHT_LONG_URL = 10 # Long URLs can be an indicator of malicious link but not always
 WEIGHT_DOMAIN_AGE = 90 # low domain age highly suspicious
+WEIGHT_PHISHTANK = 100 # URL verified as phishing in PhishTank database
 THRESHOLD_PHISHING = 70
 
 def normalize_url(url: str) -> str:
@@ -112,6 +115,52 @@ def get_domain_info(url: str):
     except Exception as e:
         print(f"WHOIS lookup failed: {e}")
         return -1, None
+
+def phishtank_lookup(url: str):
+    """
+    TODO: IMPLEMENT RATE LIMITING + WEIGHT FOR IF URL APPEARS IN DATABASE BUT NOT YET VERIFIED
+    Check if a URL is in PhishTank's database of verified phishing sites.
+    Returns a dict with 'in_database' and 'valid' keys, or None on error.
+
+    For API documentation refer to https://www.phishtank.com/api_info.php
+
+    """
+    try:
+        # Per documentation this should be either urlencoded or base64 encoded.
+        encoded_url = quote(url, safe='')
+        
+        # POST data
+        data = {
+            'url': encoded_url,
+            'format': 'json',
+            # 'app_key': REEEEE REGISTRATION DISABLED LETS HOPE I DONT GET FILTERED AT FIREWALL LEVEL
+        }
+        
+        headers = {
+            'User-Agent': 'phishtank/LinkSentinel'
+        }
+        
+        # Request
+        response = requests.post(
+            'https://checkurl.phishtank.com/checkurl/',
+            data=data,
+            headers=headers,
+            timeout=5
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            return result
+        else:
+            print(f"PhishTank API returned status code: {response.status_code}")
+            return None
+            
+    except requests.exceptions.Timeout:
+        print("PhishTank lookup timed out")
+        return None
+    except Exception as e:
+        print(f"PhishTank lookup failed: {e}")
+        return None
     
 
 def perform_url_analysis(url: str):
@@ -119,6 +168,12 @@ def perform_url_analysis(url: str):
     reasons = []
 
     age, whois_res = get_domain_info(url)
+    phishtank_res = phishtank_lookup(url)
+
+    if phishtank_res and phishtank_res.get('results', {}).get('in_database'):
+        if phishtank_res['results'].get('valid') == True:
+            score += WEIGHT_PHISHTANK
+            reasons.append('This URL is verified as a phishing site by PhishTank.')
     
     if 0 <= age < 14:
         score += WEIGHT_DOMAIN_AGE
@@ -146,7 +201,7 @@ def perform_url_analysis(url: str):
 
     if is_unusually_long(url):
         score += WEIGHT_LONG_URL
-        reasons.append('This URL is unusually long.')
+        reasons.append('This URL is unusually long.')\
 
     final_score = min(score, 100)
 
