@@ -88,3 +88,13 @@ THRESHOLD_PHISHING = 70
 ## Conclusion
 
 TBD
+
+## Discalimer
+
+LinkSentinel is a proof of concept and should not be used in production as a security solution nor should it be relied upon as a sole mechanism for detecting or preventing phishing attacks.
+
+While efforts have been made to implement reasonable detection techniques, no guarentees are made regarding the accuracy, completeness, or reliability of any results produced by this application. False positives and false negatives may occur.
+
+The author accepts no liability for any loss, damage, security incidents, or other consequences resulting from the use, misuse, or reliance on this software.
+
+Users are strongly advised to employ industry grade security controls and professional cybersecurity solutions for operational environments.
