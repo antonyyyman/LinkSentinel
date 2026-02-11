@@ -16,7 +16,13 @@ LinkSentinel is a full-stack security application designed to assess the phishin
 
 ## Methodology
 
+LinkSentinel works in two ways:
+
+### Heuristic Analysis
 LinkSentinel performs heuristic-based URL analysis by extracting lexical and structural features from user supplied URLs and evaluating them against a weighted risk model.
+
+### PhishTank Lookup
+LinkSentinel also checks if a URL is in PhishTank's database of verified phishing sites.
 
 ## Implementation
 
