@@ -19,16 +19,15 @@ export default function Navbar() {
                             <span className="text-blue-500">Sentinel</span>
                         </span>
                     </div>
-                    {/* Nav Links */}
                     <div className="hidden md:flex items-center gap-8 items-center">
                         <ul className="flex items-center gap-8">
                             <li>
-                                <a href="#" className="text-white hover:text-blue-500 transition-colors duration-300">
+                                <a href="/" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     Home
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="text-white hover:text-blue-500 transition-colors duration-300">
+                                <a href="/about" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     About
                                 </a>
                             </li>
