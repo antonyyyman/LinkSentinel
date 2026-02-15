@@ -4,12 +4,10 @@ from pydantic import BaseModel, HttpUrl
 from utils import perform_url_analysis, THRESHOLD_PHISHING
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import HTTPException
+import os
 
 app = FastAPI()
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+origins = os.getenv("CORS_ORIGINS", "").split(",")
 
 app.add_middleware(
     CORSMiddleware,

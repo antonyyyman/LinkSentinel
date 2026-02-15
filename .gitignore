@@ -21,6 +21,8 @@ __pycache__/
 venv/
 env/
 .venv/
+client/.env.local
+backend.env
 
 # --- IDE ---
 .vscode/
