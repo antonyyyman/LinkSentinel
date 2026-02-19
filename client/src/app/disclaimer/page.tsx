@@ -1,12 +1,8 @@
-"use client"
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 export default function DisclaimerPage() {
     return (
         <div className="flex flex-col min-h-screen bg-slate-950 overflow-x-hidden">
-            <Navbar />
             <section className="relative flex items-center justify-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
@@ -26,7 +22,6 @@ export default function DisclaimerPage() {
                     </p>
                 </div>
             </section>
-            <Footer />
         </div>
     );
 }

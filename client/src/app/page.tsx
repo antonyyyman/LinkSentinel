@@ -23,12 +23,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 overflow-x-hidden">
-      <Navbar />
       <Hero />
       <CTA onResultReceived={setAnalysisResult} />
       <Result result={analysisResult} />
       <Features />
-      <Footer />
     </div>
   );
 }

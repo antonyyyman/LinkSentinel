@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     // Limit worker threads to reduce memory usage
     workerThreads: false,
     cpus: 1,
+    webpackMemoryOptimizations: true,
+    serverSourceMaps: false,
   },
 
   // Reduce build memory usage
@@ -23,6 +25,8 @@ const nextConfig: NextConfig = {
   // Optimize output
   poweredByHeader: false,
   compress: true,
+
+
 };
 
 export default nextConfig;

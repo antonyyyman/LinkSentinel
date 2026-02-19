@@ -4,13 +4,15 @@ import { Menu } from "lucide-react";
 import { X } from "lucide-react"
 import { useState } from "react";
 
+import Link from "next/link";
+
 export default function Navbar() {
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
     return (
         <nav className="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out bg-slate-950/20 backdrop-blur-sm">
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-14 sm:h-16 md:h-20">
-                    <div className="flex items-center gap-2 group cursor-pointer">
+                    <div className="flex-1 flex items-center gap-2 group cursor-pointer">
                         <div>
                             <img src="/logo.png" alt="Logo" className="h-8 sm:h-10 md:h-12" />
                         </div>
@@ -20,7 +22,7 @@ export default function Navbar() {
                         </span>
                     </div>
                     <div className="hidden md:flex items-center gap-8 items-center">
-                        <ul className="flex items-center gap-8">
+                        <ul className="flex items-center gap-12">
                             <li>
                                 <a href="/" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     Home
@@ -31,26 +33,26 @@ export default function Navbar() {
                                     About
                                 </a>
                             </li>
-                            <li>
+                            {/* <li>
                                 <a href="#" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     Features
                                 </a>
-                            </li>
+                            </li> */}
                             {/* <li>
                                 <a href="#" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     Pricing
                                 </a>
                             </li> */}
                             <li>
-                                <a href="#" className="text-white hover:text-blue-500 transition-colors duration-300">
+                                <a href="/contact" className="text-white hover:text-blue-500 transition-colors duration-300">
                                     Contact
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    <div className="hidden md:flex items-center gap-4 justify-items-end">
-                        <span><button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300">Sign In</button></span>
-                        <span><button className="px-4 py-2 bg-white hover:bg-blue-50 text-blue-600 font-semibold rounded-lg transition-colors duration-300">Sign Up</button></span>
+                    <div className="flex-1 hidden md:flex items-center gap-4 justify-end">
+                        {/* <span><button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300">Sign In</button></span> */}
+                        <span><Link href="/register" className="px-4 py-2 bg-white hover:bg-blue-50 text-blue-600 font-semibold rounded-lg transition-colors duration-300">Sign Up</Link></span>
                     </div>
                     <button className="md:hidden p-2 text-white hover:text-blue-500 transition-colors duration-300" onClick={() => setMobileMenuIsOpen((prev) => !prev)}>
                         {mobileMenuIsOpen ? (
